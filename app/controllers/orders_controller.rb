@@ -53,6 +53,7 @@ class OrdersController < ApplicationController
       end
     end
     order.save!
+    Receipt.receipt(order, cart).deliver_now;
     order
   end
 
