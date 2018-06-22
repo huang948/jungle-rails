@@ -28,4 +28,20 @@
 
   </article>
 
+  <div class="col-sm-8">
+    <h2>Ratings & Reviews</h2>
+    <br/>
+    <p>Name: <%= @product.name %></p>
+    <br/>
+    <div>
+      <% @review.each do |review| %>
+        <p>User: <%= review.user.name %></p>
+        <p>Description: <%= review.description %></p>
+        <p>Rating: <%= review.rating %></p>
+        <br/> 
+      <% end %>
+    </div>
+  </div>
+
+  <% console %>
 </section>
