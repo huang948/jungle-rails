@@ -28,13 +28,25 @@
 
   </article>
 
+  <br/>
+  <%= form_for [@product, @review] do |form| %>
+    <%= form.label :rating %>
+    <%= form.select :rating, (1...6), class: 'form-control' %>
+    <br/>
+    <%= form.label :description %>
+    <%= form.text_field :description, class: 'form-control' %>
+
+    <%= form.hidden_field :product_id %>
+    <%= form.hidden_field :user_id %>
+  <% end %>
+
   <div class="col-sm-8">
     <h2>Ratings & Reviews</h2>
     <br/>
     <p>Name: <%= @product.name %></p>
     <br/>
     <div>
-      <% @review.each do |review| %>
+      <% @reviews.each do |review| %>
         <p>User: <%= review.user.name %></p>
         <p>Description: <%= review.description %></p>
         <p>Rating: <%= review.rating %></p>

@@ -6,7 +6,8 @@ class ProductsController < ApplicationController
 
   def show
     @product = Product.find params[:id]
-    @review = Review.where(product_id: @product.id).includes(:user)
+    @reviews = Review.where(product_id: @product.id).includes(:user)
+    @review = Review.new(product_id: @product.id, user_id: current_user.id) if current_user
   end
 
 end
