@@ -42,22 +42,24 @@
     <% end %>
   <% end %>
 
-  <div class="col-sm-8">
-    <h2>Ratings & Reviews</h2>
-    <br/>
-    <p>Name: <%= @product.name %></p>
-    <br/>
-    <div>
-      <% @reviews.reverse.each do |review| %>
-        <p>User: <%= review.user.name %></p>
-        <p>Description: <%= review.description %></p>
-        <p>Rating: <%= review.rating %></p>
-        <% if review.user.name == current_user.name %>
-          <%= link_to "Delete", [@product, review], method: :delete, data: { confirm: "Are you sure?" } %>
-        <% end %> 
-        <br/>
-      <% end %>
+  <% if current_user %>
+    <div class="col-sm-8">
+      <h2>Ratings & Reviews</h2>
+      <br/>
+      <p>Name: <%= @product.name %></p>
+      <br/>
+      <div>
+        <% @reviews.reverse.each do |review| %>
+          <p>User: <%= review.user.name %></p>
+          <p>Description: <%= review.description %></p>
+          <p>Rating: <%= review.rating %></p>
+          <% if review.user.name == current_user.name %>
+            <%= link_to "Delete", [@product, review], method: :delete, data: { confirm: "Are you sure?" } %>
+          <% end %> 
+          <br/>
+        <% end %>
+      </div>
     </div>
-  </div>
+  <% end %>
 
 </section>
