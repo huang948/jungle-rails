@@ -28,16 +28,18 @@
 
   </article>
 
-  <br/>
-  <%= form_for [@product, @review] do |form| %>
-    <%= form.label :rating %>
-    <%= form.select :rating, (1...6), class: 'form-control' %>
+  <% if current_user %>
     <br/>
-    <%= form.label :description %>
-    <%= form.text_field :description, class: 'form-control' %>
+    <%= form_for [@product, @review] do |form| %>
+      <%= form.label :rating %>
+      <%= form.select :rating, (1...6), class: 'form-control' %>
+      <br/>
+      <%= form.label :description %>
+      <%= form.text_field :description, class: 'form-control' %>
 
-    <%= form.hidden_field :product_id %>
-    <%= form.hidden_field :user_id %>
+      <%= form.hidden_field :product_id %>
+      <%= form.hidden_field :user_id %>
+    <% end %>
   <% end %>
 
   <div class="col-sm-8">
@@ -46,14 +48,16 @@
     <p>Name: <%= @product.name %></p>
     <br/>
     <div>
-      <% @reviews.each do |review| %>
+      <% @reviews.reverse.each do |review| %>
         <p>User: <%= review.user.name %></p>
         <p>Description: <%= review.description %></p>
         <p>Rating: <%= review.rating %></p>
-        <br/> 
+        <% if review.user.name == current_user.name %>
+          <%= link_to "Delete", [@product, review], method: :delete, data: { confirm: "Are you sure?" } %>
+        <% end %> 
+        <br/>
       <% end %>
     </div>
   </div>
 
-  <% console %>
 </section>

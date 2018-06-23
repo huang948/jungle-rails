@@ -6,4 +6,10 @@ class ReviewsController < ApplicationController
         redirect_to product_path(params[:product_id])
     end
 
+    def destroy
+        @old_review = Review.find_by(id: params[:id])
+        @old_review.destroy
+        redirect_to product_path(params[:product_id])
+    end
+
 end

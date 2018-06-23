@@ -6,7 +6,7 @@ Rails.application.routes.draw do
   resources :categories, only: [:show]
 
   resources :products, only: [:index, :show] do 
-    resources :reviews, only: [:create]
+    resources :reviews, only: [:create, :destroy]
   end
 
   get '/login' => 'sessions#new'
