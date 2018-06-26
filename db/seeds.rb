@@ -135,7 +135,8 @@ cat3.products.create!({
 User.create!({
   name: "huang948",
   email: "jordanhuang99@gmail.com",
-  password: "123"
+  password: "123",
+  password_confirmation: "123"
 })
 
 Review.create!({
